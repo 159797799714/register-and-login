@@ -26,14 +26,17 @@ var login = (function(){
                         _this.loginSuccess(data);
                     }
                 }
-                sendAjax('http://localhost:8888/1807/shop/php/login.php', params);
+                sendAjax('C:/wamp64/www/28DAY/admin/php/login.php', params);
             }
         },
         loginSuccess: function(data) {
             if(data.code == 200) {
+                document.cookie = "user-id=" + data.data.id;
+                document.cookie = "token=" + data.data.token;
+                localStorage.userImg = data.data.ataver;
                 location.href = 'manager.html';
             } else {
-
+                alert(data.msg);
             }
         }
     }
